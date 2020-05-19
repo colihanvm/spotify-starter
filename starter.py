@@ -3,7 +3,7 @@
 #	creates directory of files with Spotify song IDs
 #	each file represents a playlist
 
-import sys
+import sys, os
 
 import spotipy
 import spotipy.util as util
@@ -34,6 +34,9 @@ if __name__ == '__main__':
 		        print()
 		        print(playlist['name'])
 
+		        if not os.path.exists('songs'):
+		        	os.mkdir('songs')
+
 		        filename = 'songs/' + playlist['name'] + '.txt'
 		        
 		        f = open(filename, "w")
@@ -52,7 +55,7 @@ if __name__ == '__main__':
 
 		        while tracks['next']:
 		            tracks = sp.next(tracks)
-		            show_tracks(tracks)
+		            #show_tracks(tracks)
 	   
 	else:
 	    print("Can't get token for", username)
